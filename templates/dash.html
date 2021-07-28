@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static',filename='dash.css') }}">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="wind">
+
+        <div id="form_id">
+            <div id="nav">
+
+                
+
+
+                
+            </div>
+            <form action="tambol" method="POST">
+
+                <input name="input_value" id="pro"  type="text"><br>
+                <button name="submit_button" value="up_proxy" >Поднять</button>
+                <button name="submit_button" value="reload_proxy" >Перезапустить</button>
+                <button name="submit_button" value="delete_proxy" >Удалить</button>
+            </form>
+
+
+        </div>
+    </div>
+
+
+
+
+<script>
+
+{% if action %}
+
+{% for el in action %}
+
+        var ul = document.getElementById("nav");
+        var para = document.createElement('li');
+        para.innerHTML = "{{el.proxy_ip}}";
+        ul.appendChild(para);
+
+
+
+{% endfor %}
+
+
+{% endif %}
+
+
+
+
+
+
+ document.addEventListener('click', function(event) {
+    var li = event.target.closest("li");
+    if (!li) return;
+    if(event.target.style.backgroundColor == 'gray') event.target.style.backgroundColor = 'white';
+    else event.target.style.backgroundColor = 'gray';
+    document.getElementById('pro').value = event.target.innerHTML;
+
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+{% if param1==3 %}
+    var lis = document.getElementsByTagName('li');
+          for (i=0;i <lis.length;i++ ){
+          if (lis[i].style.backgroundColor == 'gray') lis[i].remove() ;}
+
+{% else %}
+
+{% endif %}
+</script>
+
+
+
+
+
+</body>
+
+
+
+
+
+</html>
